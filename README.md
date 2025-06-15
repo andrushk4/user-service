@@ -22,7 +22,7 @@
 Откройте терминал и выполните команду:
 
 ```sh
-git clone [https://github.com/andrushk4/user-service.git](https://github.com/andrushk4/user-service.git)
+git clone https://github.com/andrushk4/user-service.git
 ```
 
 ### Настройка окружения
@@ -31,7 +31,11 @@ git clone [https://github.com/andrushk4/user-service.git](https://github.com/and
 ```sh
 cp .env.example .env
 ```
-#### 2. Запускаем Doker Compose
+#### 2. Установим composer зависимости в локальном окружении
+```sh
+docker compose run --rm app composer install
+```
+#### 3. Запускаем Docker Compose
 ```sh
 docker compose up -d --build
 ```
