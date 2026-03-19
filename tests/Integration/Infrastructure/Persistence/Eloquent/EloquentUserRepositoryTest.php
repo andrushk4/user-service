@@ -29,7 +29,7 @@ class EloquentUserRepositoryTest extends TestCase
     {
         $userId = Uuid::uuid4();
         $email = new Email('test@example.com');
-        
+
         EloquentUser::create([
             'id' => $userId,
             'email' => $email,
@@ -58,8 +58,8 @@ class EloquentUserRepositoryTest extends TestCase
     {
         $email = new Email('test123@example.com');
         $userId = Uuid::uuid4();
-        
-        EloquentUser::create([
+
+        EloquentUser::query()->create([
             'id' => $userId,
             'email' => $email,
             'created_at' => now(),
@@ -85,7 +85,7 @@ class EloquentUserRepositoryTest extends TestCase
     {
         $phone = new Phone('+1234567890');
         $userId = Uuid::uuid4();
-        
+
         EloquentUser::create([
             'id' => $userId,
             'phone' => $phone,
@@ -103,7 +103,7 @@ class EloquentUserRepositoryTest extends TestCase
     {
         $telegramId = new TelegramId('123456789');
         $userId = Uuid::uuid4();
-        
+
         EloquentUser::create([
             'id' => $userId,
             'telegram_id' => $telegramId,
@@ -121,7 +121,7 @@ class EloquentUserRepositoryTest extends TestCase
     {
         $email = new Email('new@example.com');
         $password = new HashedPassword('password');
-        
+
         $domainUser = $this->createDomainUser($email, 'Foo', 'Bar', $password);
 
         $this->repository->save($domainUser);
@@ -137,7 +137,7 @@ class EloquentUserRepositoryTest extends TestCase
         $userId = Uuid::uuid4();
         $originalEmail = new Email('original@example.com');
         $newEmail = new Email('updated@example.com');
-        
+
         // Создаем пользователя в БД
         EloquentUser::create([
             'id' => $userId,
@@ -155,7 +155,7 @@ class EloquentUserRepositoryTest extends TestCase
             'id' => $userId,
             'email' => $newEmail->value,
         ]);
-        
+
         $this->assertDatabaseMissing('users', [
             'id' => $userId,
             'email' => $originalEmail,
@@ -166,7 +166,7 @@ class EloquentUserRepositoryTest extends TestCase
     {
         $userId = Uuid::uuid4();
         $email = new Email('delete@example.com');
-        
+
         EloquentUser::create([
             'id' => $userId,
             'email' => $email,
