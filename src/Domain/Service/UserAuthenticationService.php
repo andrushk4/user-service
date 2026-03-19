@@ -80,6 +80,7 @@ final readonly class UserAuthenticationService
     public function authenticateWithTelegram(TelegramId $telegramId, Password $plainPassword): User
     {
         $user = $this->userRepository->findByTelegramId($telegramId);
+        
         if ($user === null) {
             throw new UserNotFoundException('Пользователь не найден.');
         }
